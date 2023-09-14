@@ -1,0 +1,58 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+    integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+    crossorigin="anonymous"
+  />
+
+
+
+</head>
+<body class="m-5">    
+    <div id="innerdiv"> This should change - inner html</div>
+    <div id="reactdiv"> This should change - react div</div>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+
+    <script>
+         function getDay(){
+            const weekDay = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
+            const d = new Date();
+            let day = weekDay[d.getDay()];
+            return day;
+        }
+      let root = ReactDOM.createRoot(document.getElementById('reactdiv'));        
+     let renderThis = () => {    
+        //Inner HTML
+        let str = `<h2 style="color:coral"> Vanilla JS </h2><input/> <br><p class="text-primary">Current DateTime is ${new Date()} </p><hr>`;
+        document.getElementById('innerdiv').innerHTML = str;
+
+
+        // React
+        let MyReactComp = React.createElement('div',{},
+        React.createElement("h2",{"className":"display-3"}," React Date Time"),
+         React.createElement("input",{},null),
+         React.createElement("p",{"className":"text-warning display-6"},new Date().toString()),
+         React.createElement("p",{"className":"text-success display-6"},new Date().toISOString()),
+         React.createElement('p',{"className":"text-info display-6"},`Today's day is ${getDay()}`)
+         );
+       root.render(MyReactComp);
+     }
+    setInterval(renderThis,500);
+   </script>
+
+
+
+
+</body>
+</html>
+
